@@ -21,13 +21,13 @@ model User {
 }
 
 model Category {
-  id       String    @id @default(uuid())
+  id       Int       @id @default(autoincrement())
   name     String    @unique
   projects Project[] @relation("ProjectCategories")
 }
 
 model Project {
-  id          String     @id @default(uuid())
+  id          Int       @id @default(autoincrement())
   title       String
   description String?
   userId      String
@@ -36,7 +36,7 @@ model Project {
 }
 
 model ProjectCategories {
-  id         String @id @default(uuid())
-  projectId  String
-  categoryId String
+  id         Int       @id @default(autoincrement())
+  projectId  Int
+  categoryId Int
 }
