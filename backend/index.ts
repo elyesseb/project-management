@@ -14,6 +14,10 @@ app.use('/auth', authRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/projects', projectRoutes);
 
+app.use((req, res) => {
+    res.status(404).json({ message: 'Route not found' });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

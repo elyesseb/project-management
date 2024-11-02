@@ -9,7 +9,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Category" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
@@ -17,7 +17,7 @@ CREATE TABLE "Category" (
 
 -- CreateTable
 CREATE TABLE "Project" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
     "userId" TEXT NOT NULL,
@@ -27,17 +27,16 @@ CREATE TABLE "Project" (
 
 -- CreateTable
 CREATE TABLE "ProjectCategories" (
-    "id" TEXT NOT NULL,
-    "projectId" TEXT NOT NULL,
-    "categoryId" TEXT NOT NULL,
+    "projectId" INTEGER NOT NULL,
+    "categoryId" INTEGER NOT NULL,
 
-    CONSTRAINT "ProjectCategories_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProjectCategories_pkey" PRIMARY KEY ("projectId","categoryId")
 );
 
 -- CreateTable
 CREATE TABLE "_ProjectCategories" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
 );
 
 -- CreateIndex

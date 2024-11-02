@@ -27,7 +27,7 @@ model Category {
 }
 
 model Project {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   title       String
   description String?
   userId      String
@@ -36,7 +36,8 @@ model Project {
 }
 
 model ProjectCategories {
-  id         Int       @id @default(autoincrement())
   projectId  Int
   categoryId Int
+  @@id([projectId, categoryId])
 }
+

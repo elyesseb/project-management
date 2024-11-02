@@ -47,7 +47,7 @@ export const getProjectById = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const project = await prisma.project.findUnique({
-            where: { id: Number(id) },
+            where: { id: parseInt(id, 10) },
             include: { categories: true },
         });
         if (!project) {
@@ -104,6 +104,29 @@ export const deleteProject = async (req: AuthenticatedRequest, res: Response) =>
         res.status(204).send();
     } catch (error) {
         console.error('Error deleting project', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const getProjectsByCategory = async (req: Request, res: Response) => {
+    const { categoryId } = req.query;
+
+    const categoryIdNumber = parseInt(categoryId as string, 10);
+
+    try {
+        const projects = await prisma.project.findMany({
+            where: {
+                categories: {
+                    some: {
+                        id: categoryIdNumber,
+                    },
+                },
+            },
+            include: { categories: true },
+        });
+        res.status(200).json(projects);
+    } catch (error) {
+        console.error('Error fetching projects by category', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
