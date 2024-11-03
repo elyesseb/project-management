@@ -65,7 +65,7 @@ const AddProjectForm = () => {
           <Select isMulti options={categoryOptions} value={selectedCategories} onChange={handleCategoryChange} placeholder="Select categories" />
         </FormControl>
         <Flex justify="flex-end" width="100%">
-          <Button type="submit" colorScheme="teal" mt={2}>
+          <Button type="submit" colorScheme="blue" mt={2}>
             Add Project
           </Button>
         </Flex>
