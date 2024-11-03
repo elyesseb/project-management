@@ -19,7 +19,7 @@ const Navbar = () => {
         {token ? (
           <>
             <NavLink to="/dashboard">Dashboard</NavLink>
-            <Button onClick={handleLogout} ml={3} bg={"#09090B"} _hover={{ bg: "gray.800" }}>
+            <Button onClick={handleLogout} ml={3} bg={"#09090B"} color={"#a1a1aa"} _hover={{ bg: "gray.800" }}>
               Logout
             </Button>
           </>

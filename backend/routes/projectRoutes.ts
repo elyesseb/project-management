@@ -6,6 +6,7 @@ import {
     updateProject,
     deleteProject,
     getProjectsByCategory,
+    getUserProjects,
 } from '../controllers/projectController';
 import { authenticateUser } from '../middlewares/authMiddleware';
 
@@ -14,6 +15,8 @@ const router = Router();
 router.post('/', authenticateUser, addProject as RequestHandler);
 
 router.get('/', getAllProjects as RequestHandler);
+
+router.get('/user', authenticateUser, getUserProjects as RequestHandler);
 
 router.get('/filter', getProjectsByCategory as RequestHandler);
 

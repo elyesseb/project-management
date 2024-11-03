@@ -2,7 +2,7 @@ import { Category } from "../interfaces/Category";
 import { createFetchOptions } from "../utils/createFetchOptions";
 import { throwExceptionError } from "../utils/throwError";
 
-const API_URL = 'http://your-backend-api-url/api/categories';
+const API_URL = 'http://localhost:3000/categories';
 
 export const getAllCategories = async (): Promise<Category[]> => {
     const response = await fetch(API_URL);

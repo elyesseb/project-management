@@ -5,5 +5,17 @@ export interface Project {
     title: string;
     description: string | null;
     userId: string;
-    categories: Category[];
+    categories: Category[]
+}
+
+export type NewProject = {
+    title: string;
+    description: string | null;
+    categoryIds: number[];
+};
+
+export interface UpdateProjectData {
+    title: string;
+    description: string | null;
+    categoryIds: number[];
 }

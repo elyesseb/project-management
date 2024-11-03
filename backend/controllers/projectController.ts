@@ -130,3 +130,22 @@ export const getProjectsByCategory = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+export const getUserProjects = async (req: AuthenticatedRequest, res: Response) => {
+    const userId = req.userId;
+
+    if (!userId) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    try {
+        const projects = await prisma.project.findMany({
+            where: { userId },
+            include: { categories: true },
+        });
+        res.status(200).json(projects);
+    } catch (error) {
+        console.error('Error fetching user projects', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
