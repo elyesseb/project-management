@@ -18,7 +18,7 @@ router.get('/', getAllProjects as RequestHandler);
 
 router.get('/user', authenticateUser, getUserProjects as RequestHandler);
 
-router.get('/filter', getProjectsByCategory as RequestHandler);
+router.get('/filter', authenticateUser, getProjectsByCategory as RequestHandler);
 
 router.get('/:id', getProjectById as RequestHandler);
 

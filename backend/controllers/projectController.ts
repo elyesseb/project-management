@@ -108,14 +108,15 @@ export const deleteProject = async (req: AuthenticatedRequest, res: Response) =>
     }
 };
 
-export const getProjectsByCategory = async (req: Request, res: Response) => {
+export const getProjectsByCategory = async (req: AuthenticatedRequest, res: Response) => {
     const { categoryId } = req.query;
-
     const categoryIdNumber = parseInt(categoryId as string, 10);
+    const userId = req.userId;
 
     try {
         const projects = await prisma.project.findMany({
             where: {
+                userId: userId,
                 categories: {
                     some: {
                         id: categoryIdNumber,
@@ -124,6 +125,7 @@ export const getProjectsByCategory = async (req: Request, res: Response) => {
             },
             include: { categories: true },
         });
+
         res.status(200).json(projects);
     } catch (error) {
         console.error('Error fetching projects by category', error);

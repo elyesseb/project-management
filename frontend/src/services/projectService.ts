@@ -23,7 +23,7 @@ const getProjectById = async (id: number): Promise<Project> => {
 };
 
 const getProjectsByCategory = async (categoryId: number): Promise<Project[]> => {
-    const response = await fetch(`${API_URL}/filter?categoryId=${categoryId}`);
+    const response = await fetch(`${API_URL}/filter?categoryId=${categoryId}`, createFetchOptions('GET'));
     throwExceptionError(response, 'Error while fetching project by category');
     return await response.json();
 };
